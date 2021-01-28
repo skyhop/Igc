@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0-beta1</Version>
+    <Version>1.0.0-beta2</Version>
     <Company>Skyhop</Company>
     <Authors>Corstian Boerman</Authors>
     <Copyright>Corstian Boerman</Copyright>

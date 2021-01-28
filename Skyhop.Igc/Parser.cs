@@ -14,7 +14,7 @@ namespace Skyhop.Igc
 
         private readonly IgcFile _result = new IgcFile();
         private List<RecordExtension> _fixExtensions = new List<RecordExtension>();
-        private readonly List<RecordExtension> _dataExtensions = new List<RecordExtension>();
+        private List<RecordExtension> _dataExtensions = new List<RecordExtension>();
 
         private int _lineNumber = 0;
         private DateTime? _prevTimestamp;
@@ -105,8 +105,10 @@ namespace Skyhop.Igc
                     }
                     break;
                 case 'I':
-                case 'J':
                     _fixExtensions = _parseIJRecord(line);
+                    break;
+                case 'J':
+                    _dataExtensions = _parseIJRecord(line);
                     break;
                 case 'G':
                     _result.Security = ( _result.Security ?? "" ) + line.Substring(1);
@@ -479,7 +481,7 @@ namespace Skyhop.Igc
                 var offset = 3 + (i * 7);
                 var start = Convert.ToInt32(line.Substring(offset, 2));
                 var end = Convert.ToInt32(line.Substring(offset + 2, 2));
-                var length = end - start + 1;
+                var length = end - start;
                 var code = line.Substring(offset + 4, 3);
 
                 extensions.Add(new RecordExtension

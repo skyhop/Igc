@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -496,12 +497,12 @@ namespace Skyhop.Igc
         }
 
         private double _parseLatitude(string dd, string mm, string mmm, string ns) {
-            var degrees = Convert.ToInt32(dd) + (double.Parse($"{mm}.{mmm}") / 60);
+            var degrees = Convert.ToInt32(dd) + (double.Parse($"{mm}.{mmm}", CultureInfo.InvariantCulture) / 60);
             return ( ns == "S" ) ? -degrees : degrees;
         }
 
         private double _parseLongitude(string ddd, string mm, string mmm, string ew) {
-            var degrees = Convert.ToInt32(ddd) + (double.Parse($"{mm}.{mmm}") / 60);
+            var degrees = Convert.ToInt32(ddd) + (double.Parse($"{mm}.{mmm}", CultureInfo.InvariantCulture) / 60);
             return ( ew == "W" ) ? -degrees : degrees;
         }
 
